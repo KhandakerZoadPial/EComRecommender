@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+        <div class="search-container">
+            <form method="post" class="row g-3">
+                {% csrf_token %}
+                <div class="col-12">
+                    <input type="text" name="product_name" class="form-control form-control-lg" placeholder="Enter product name" required>
+                </div>
+                <div class="col-12 d-grid">
+                    <button type="submit" class="btn btn-lg text-white"><i class="fas fa-search me-2"></i> Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% if results %}
+<div class="mt-5">
+    <div class="text-center mb-4">
+        <h2 class="display-4">Search Results</h2>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- Product cards (sample data) -->
+        <!-- You can replace these with dynamic content from your backend -->
+        <div class="col-6 col-md-6">
+            <div class="card result-card">
+                <img src="https://source.unsplash.com/600x400/?product1" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                    <h5 class="card-title">Product 1</h5>
+                    <p class="card-text">$100 | 500 ratings</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-6 ">
+            <div class="card result-card">
+                <img src="https://source.unsplash.com/600x400/?product1" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                    <h5 class="card-title">Product 1</h5>
+                    <p class="card-text">$100 | 500 ratings</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-6">
+            <div class="card result-card">
+                <img src="https://source.unsplash.com/600x400/?product1" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                    <h5 class="card-title">Product 1</h5>
+                    <p class="card-text">$100 | 500 ratings</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-6">
+            <div class="card result-card">
+                <img src="https://source.unsplash.com/600x400/?product1" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                    <h5 class="card-title">Product 1</h5>
+                    <p class="card-text">$100 | 500 ratings</p>
+                </div>
+            </div>
+        </div>
+        <!-- Repeat similar card structures for other products -->
+    </div>
+</div>
+{% else %}
+<br><div class="row justify-content-center">
+
+<div class="col-lg-8 col-md-10">
+        <div class="search-container">
+            <div class="row">
+                <div class="col-md-6 text-center mt-1">
+                    <img src="https://cdn.pixabay.com/photo/2016/04/01/09/42/buy-1299519_1280.png" height="400px" alt="">
+
+                </div>
+                <div class="col-md-6 text-center mt-1">
+                    <img src="https://cdn.pixabay.com/photo/2017/01/31/17/00/buy-2025564_1280.png" height="400px"  alt="">
+
+                </div>
+            </div>
+</div>
+</div>
+</div>
+<br>
+{% endif %}
+{% endblock %}
