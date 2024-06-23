@@ -37,9 +37,9 @@
 
 
 
+<h2 class="display-4 text-center">Search Results</h2><hr>
 
-<div id="results" class="mt-5">
-
+<div id="results" class="row mt-5">
 </div>
 
 <div id="no_search">
@@ -82,14 +82,25 @@ $(document).ready(function() {
             success: function(response) {
                 $('#loading').hide(); // Hide the loading animation
                 if (response.results && response.results.length > 0) {
-                    var resultsHtml = '<div class="text-center mb-4"><h2 class="display-4">Search Results</h2><hr></div><div class="row row-cols-1 row-cols-md-3 g-4">';
+                    var resultsHtml = '';
                     response.results.forEach(function(product) {
                         resultsHtml += '<div class="col-6 col-md-6"><div class="card result-card"><br><img src="' + product.image_url + '" class="card-img-top  w-100 " alt="' + product.name + '"><div class="card-body"><h5 class="card-title">' + product.name + '</h5><p class="card-text">$' + product.price + ' | ' + product.ratings + ' ratings</p></div></div></div> <br> <br>';
                     });
-                    resultsHtml += '</div>';
-                    $('#results').html(resultsHtml);
+                    resultsHtml += '';
+                    $('#results').append(resultsHtml);
                 } else {
                     $('#results').html('<p>No results found</p>');
+                }
+
+
+                if (response.ali_express_data && response.ali_express_data.length > 0) {
+                    console.log(response.ali_express_data);
+                    var aliExpressHtml  = '';
+                        response.ali_express_data.forEach(function(product) {
+                            aliExpressHtml  += '<div class="col-6 col-md-6"><div class="card result-card"><br><img src="' + product.image_url + '" class="card-img-top  w-100 " alt="' + product.name + '"><div class="card-body"><h5 class="card-title">' + product.name + '</h5><p class="card-text">$' + product.price + ' | ' + product.sold + ' Sold</p></div></div></div> <br> <br>';
+                            });
+                            aliExpressHtml  += '';
+                            $('#results').append(aliExpressHtml);
                 }
             },
             error: function(xhr, status, error) {
